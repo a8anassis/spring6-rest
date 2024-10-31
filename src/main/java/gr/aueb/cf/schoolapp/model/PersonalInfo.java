@@ -22,7 +22,10 @@ public class PersonalInfo extends AbstractEntity {
     @JoinColumn(name = "amka_file_id")
     private Attachment amkaFile;
 
+    @Column(unique = true)
     private String amka;
+
+    @Column(unique = true)
     private String identityNumber;
     private String placeOfBirth;
     private String municipalityOfRegistration;

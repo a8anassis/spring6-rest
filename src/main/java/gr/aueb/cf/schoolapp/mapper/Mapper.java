@@ -56,6 +56,7 @@ public class Mapper {
         user.setGender(userInsertDTO.getGender());
         user.setRole(userInsertDTO.getRole());
         user.setIsActive(userInsertDTO.getIsActive());
+        user.setVat(userInsertDTO.getVat());
         teacher.setUser(user);
 
         PersonalInfoInsertDTO personalInfoInsertDTO = teacherInsertDTO.getPersonalInfo();

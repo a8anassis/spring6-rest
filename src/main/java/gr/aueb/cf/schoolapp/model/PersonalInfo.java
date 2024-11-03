@@ -18,7 +18,7 @@ public class PersonalInfo extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "amka_file_id")
     private Attachment amkaFile;
 

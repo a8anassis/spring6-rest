@@ -67,7 +67,7 @@ public class TeacherRestController {
             if (filters == null) filters = TeacherFilters.builder().build();
             return ResponseEntity.ok(teacherService.getTeachersFiltered(filters));
         } catch (Exception e) {
-            LOGGER.error("ERROR: Could not get teachers.", e);
+            LOGGER.warn("Could not get teachers.", e);
             throw e;
         }
     }
@@ -80,7 +80,7 @@ public class TeacherRestController {
             if (filters == null) filters = TeacherFilters.builder().build();
             return ResponseEntity.ok(teacherService.getTeachersFilteredPaginated(filters));
         } catch (Exception e) {
-            LOGGER.error("ERROR: Could not get teachers.", e);
+            LOGGER.warn("Could not get teachers.", e);
             throw e;
         }
     }

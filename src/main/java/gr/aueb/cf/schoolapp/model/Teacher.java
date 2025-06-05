@@ -24,11 +24,11 @@ public class Teacher extends AbstractEntity {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_info_id")
     private PersonalInfo personalInfo;
 

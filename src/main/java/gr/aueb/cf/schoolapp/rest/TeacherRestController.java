@@ -7,6 +7,10 @@ import gr.aueb.cf.schoolapp.dto.TeacherInsertDTO;
 import gr.aueb.cf.schoolapp.dto.TeacherReadOnlyDTO;
 import gr.aueb.cf.schoolapp.mapper.Mapper;
 import gr.aueb.cf.schoolapp.service.TeacherService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -32,6 +36,19 @@ public class TeacherRestController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherRestController.class);
     private final TeacherService teacherService;
 
+    @Operation(
+            summary = "Get all teachers paginated",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Teachers Found",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TeacherReadOnlyDTO.class)
+                            )
+                    )
+            }
+    )
     @GetMapping("/teachers")
     public ResponseEntity<Page<TeacherReadOnlyDTO>> getPaginatedTeachers(
             @RequestParam(defaultValue = "0") int page,

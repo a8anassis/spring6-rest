@@ -49,7 +49,7 @@ public class TeacherService {
 //        this.mapper = mapper;
 //    }
 
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackOn = { Exception.class } )
     public TeacherReadOnlyDTO saveTeacher(TeacherInsertDTO teacherInsertDTO, MultipartFile amkaFile)
             throws AppObjectAlreadyExists, AppObjectInvalidArgumentException, IOException {
 

@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/auth/authenticate").permitAll()
                         .requestMatchers("/api/teachers/**").hasAnyAuthority(Role.TEACHER.name(), Role.SUPER_ADMIN.name())
                         .requestMatchers("/api/employees/**").hasAnyAuthority(Role.EMPLOYEE.name())
-                        .requestMatchers("/**").authenticated()
+                        .requestMatchers("/**").permitAll()
                 )
                 .sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
                 .authenticationProvider(authenticationProvider())

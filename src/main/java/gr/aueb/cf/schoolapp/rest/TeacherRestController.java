@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ public class TeacherRestController {
 
     @Operation(
             summary = "Get all teachers paginated",
+            security = @SecurityRequirement(name = "Bearer Authentication"),
             responses = {
                     @ApiResponse(
                             responseCode = "200",
@@ -46,6 +48,16 @@ public class TeacherRestController {
                                     mediaType = "application/json",
                                     schema = @Schema(implementation = TeacherReadOnlyDTO.class)
                             )
+                    ),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "Unauthorized",
+                            content = @Content
+                    ),
+                    @ApiResponse(
+                            responseCode = "403",
+                            description = "Access Denied",
+                            content = @Content
                     )
             }
     )
@@ -58,6 +70,19 @@ public class TeacherRestController {
         return new ResponseEntity<>(teachersPage, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "Save a teacher",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Teacher inserted",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TeacherReadOnlyDTO.class)
+                            )
+                    )
+            }
+    )
     @PostMapping("/teachers/save")
     public ResponseEntity<TeacherReadOnlyDTO> saveTeacher(
             @Valid @RequestPart(name = "teacher")TeacherInsertDTO teacherInsertDTO,
@@ -76,6 +101,30 @@ public class TeacherRestController {
         }
     }
 
+    @Operation(
+            summary = "Get all teachers filtered",
+            security = @SecurityRequirement(name = "Bearer Authentication"),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Teachers Found",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TeacherReadOnlyDTO.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "Unauthorized",
+                            content = @Content
+                    ),
+                    @ApiResponse(
+                            responseCode = "403",
+                            description = "Access Denied",
+                            content = @Content
+                    )
+            }
+    )
     @PostMapping("/teachers/all")
     public ResponseEntity<List<TeacherReadOnlyDTO>> getTeachers(@Nullable @RequestBody TeacherFilters filters,
                                                                 Principal principal)
@@ -89,6 +138,30 @@ public class TeacherRestController {
         }
     }
 
+    @Operation(
+            summary = "Get all teachers filtered",
+            security = @SecurityRequirement(name = "Bearer Authentication"),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Teachers Found",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TeacherReadOnlyDTO.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "Unauthorized",
+                            content = @Content
+                    ),
+                    @ApiResponse(
+                            responseCode = "403",
+                            description = "Access Denied",
+                            content = @Content
+                    )
+            }
+    )
     @PostMapping("/teachers/all/paginated")
     public ResponseEntity<Paginated<TeacherReadOnlyDTO>> getTeachersFilteredPaginated(@Nullable @RequestBody TeacherFilters filters,
                                                                                       Principal principal)

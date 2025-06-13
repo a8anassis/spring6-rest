@@ -6,13 +6,14 @@ import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.model.User;
 import jakarta.persistence.Column;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class Mapper {
     
-    // private final PasswordEncoder passwordEncoder
+     private final PasswordEncoder passwordEncoder;
 
     public TeacherReadOnlyDTO mapToTeacherReadOnlyDTO(Teacher teacher) {
         var dto = new TeacherReadOnlyDTO();

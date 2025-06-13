@@ -47,7 +47,7 @@ public class Mapper {
         user.setFirstname(userInsertDTO.getFirstname());
         user.setLastname(userInsertDTO.getLastname());
         user.setUsername(userInsertDTO.getUsername());
-        user.setPassword(userInsertDTO.getPassword());      //todo
+        user.setPassword(passwordEncoder.encode(userInsertDTO.getPassword()));
         user.setFatherName(userInsertDTO.getFatherName());
         user.setMotherName(userInsertDTO.getMotherName());
         user.setFatherName(userInsertDTO.getFatherName());

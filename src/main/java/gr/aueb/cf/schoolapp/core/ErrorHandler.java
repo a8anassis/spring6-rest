@@ -3,7 +3,6 @@ package gr.aueb.cf.schoolapp.core;
 import gr.aueb.cf.schoolapp.core.exceptions.*;
 import gr.aueb.cf.schoolapp.dto.ResponseMessageDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
